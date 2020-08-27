@@ -1,4 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Problem Statement
+Create a React Component which displays a histogram based on data passed to it. Use d3.js for the data visualization. The user should be able to click on a particular bar of the histogram to highlight it. Hovering for a couple of seconds or clicking on the bar shows the key and value of the dictionary entry represented by the bar by a tooltip.
+ 
+For example, using the component as follows:
+ ```
+<Histogram data={{"apples": 10, "oranges": 5, "pears": 15}} />
+ ```
+Should produce a bar chart, for apples, oranges and pears, where the height of the bar for the respective fruits should be 10 for apples, 5 for oranges and 15 for pears. If we user hovers over or clicks the apples bar, the tooltip should show ‘Apples: 10’.
+
 
 ## Available Scripts
 
