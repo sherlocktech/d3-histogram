@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { scaleLinear } from 'd3-scale'
-import { max } from 'd3-array'
-import { select } from 'd3-selection'
+import * as d3  from 'd3'
 
 export default class Histogram extends Component {
    constructor(props){
@@ -19,27 +17,27 @@ export default class Histogram extends Component {
    }
 
    createBarChart() {
-      const node = this.node
-      const dataMax = max(this.props.data)
-      const yScale = scaleLinear()
+      const chartValues = Object.values(this.props.data)
+      const dataMax = d3.max(chartValues)
+      const yScale = d3.scaleLinear()
          .domain([0, dataMax])
          .range([0, this.props.size[1]])
+      
+      const svg = d3.select(this.node)
+         .style("border", "1px solid red")
 
-      select(node)
-         .selectAll('rect')
-         .data(this.props.data)
+      svg.selectAll('rect')
+         .data(chartValues)
          .enter()
          .append('rect')
       
-      select(node)
-         .selectAll('rect')
-         .data(this.props.data)
+      svg.selectAll('rect')
+         .data(chartValues)
          .exit()
          .remove()
       
-      select(node)
-         .selectAll('rect')
-         .data(this.props.data)
+      svg.selectAll('rect')
+         .data(chartValues)
          .style('fill', '#fe9922')
          .attr('x', (d,i) => i * 25)
          .attr('y', d => this.props.size[1] - yScale(d))

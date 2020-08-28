@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Histogram data={[50,10,1,3]} size={[500,500]} />
+      <Histogram data={{"apples": 10, "oranges": 5, "pears": 15}} size={[500,500]} />
       </header>
     </div>
   );
