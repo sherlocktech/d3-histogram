@@ -1,53 +1,70 @@
 import React, { Component } from 'react'
 import './App.css'
-import * as d3  from 'd3'
+import * as d3 from 'd3'
 
 export default class Histogram extends Component {
-   constructor(props){
+   constructor(props) {
       super(props)
-      this.createBarChart = this.createBarChart.bind(this)
    }
-   
+
    componentDidMount() {
-      this.createBarChart()
+      const data = this.buildData()
+      this.drawBarChart(data)
    }
 
-   componentDidUpdate() {
-      this.createBarChart()
+   buildData() {
+      let result = [];
+      for (const key in this.props.data) {
+         if (this.props.data.hasOwnProperty(key)) {
+            const element = this.props.data[key];
+            var obj = { "key": key, "value": element }
+            result.push(obj);
+         }
+      }
+
+      return result;
    }
 
-   createBarChart() {
-      const chartValues = Object.values(this.props.data)
-      const dataMax = d3.max(chartValues)
-      const yScale = d3.scaleLinear()
-         .domain([0, dataMax])
-         .range([0, this.props.size[1]])
-      
-      const svg = d3.select(this.node)
-         .style("border", "1px solid red")
+   drawBarChart(data) {
+      const canvasHeight = 400
+      const canvasWidth = 600
+      const scale = 20
 
-      svg.selectAll('rect')
-         .data(chartValues)
-         .enter()
+      const tooltip = d3.select(this.refs.canvas)
+         .append('div')
+         .attr('class', 'tooltip')
+         .style('display', 'none')
+
+      const svgCanvas = d3.select(this.refs.canvas)
+         .append('svg')
+         .attr('width', canvasWidth)
+         .attr('height', canvasHeight)
+         .style('border', '1px solid black')
+
+      svgCanvas.selectAll('rect')
+         .data(data).enter()
          .append('rect')
-      
-      svg.selectAll('rect')
-         .data(chartValues)
-         .exit()
-         .remove()
-      
-      svg.selectAll('rect')
-         .data(chartValues)
-         .style('fill', '#fe9922')
-         .attr('x', (d,i) => i * 25)
-         .attr('y', d => this.props.size[1] - yScale(d))
-         .attr('height', d => yScale(d))
-         .attr('width', 25)
+         .attr('width', 40)
+         .attr('height', (datapoint) => datapoint.value * scale)
+         .attr('fill', 'orange')
+         .attr('x', (datapoint, iteration) => iteration * 45)
+         .attr('y', (datapoint) => canvasHeight - datapoint.value * scale)
+         .on('mouseover', (event, datapoint, iteration) => {
+            tooltip.style('display', 'block')
+               .html(datapoint.key + "<hr>" + datapoint.value)
+               .style('left', event.pageX + "px")
+               .style('top', event.pageY + 'px')
+         })
+         .on('mousemove', (event) => {
+            tooltip.style('left', event.pageX + "px")
+               .style('top', (event.pageY - 40) + 'px')
+         })
+         .on('mouseout', () => {
+            tooltip.style('display', 'none')
+         })
    }
 
    render() {
-      return <svg ref={node => this.node = node}
-         width={500} height={500}>
-      </svg>
+      return <div ref="canvas"></div>
    }
 }
