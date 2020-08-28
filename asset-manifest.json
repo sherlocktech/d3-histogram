@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/d3-histogram/static/css/main.6a607c79.chunk.css",
+    "main.js": "/d3-histogram/static/js/main.8f003683.chunk.js",
+    "main.js.map": "/d3-histogram/static/js/main.8f003683.chunk.js.map",
+    "runtime-main.js": "/d3-histogram/static/js/runtime-main.582704f3.js",
+    "runtime-main.js.map": "/d3-histogram/static/js/runtime-main.582704f3.js.map",
+    "static/js/2.06c1454d.chunk.js": "/d3-histogram/static/js/2.06c1454d.chunk.js",
+    "static/js/2.06c1454d.chunk.js.map": "/d3-histogram/static/js/2.06c1454d.chunk.js.map",
+    "index.html": "/d3-histogram/index.html",
+    "precache-manifest.1f93ca07fe0691b1a4eb26ea875babd7.js": "/d3-histogram/precache-manifest.1f93ca07fe0691b1a4eb26ea875babd7.js",
+    "service-worker.js": "/d3-histogram/service-worker.js",
+    "static/css/main.6a607c79.chunk.css.map": "/d3-histogram/static/css/main.6a607c79.chunk.css.map",
+    "static/js/2.06c1454d.chunk.js.LICENSE.txt": "/d3-histogram/static/js/2.06c1454d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/d3-histogram/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.582704f3.js",
+    "static/js/2.06c1454d.chunk.js",
+    "static/css/main.6a607c79.chunk.css",
+    "static/js/main.8f003683.chunk.js"
+  ]
+}
