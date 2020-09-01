@@ -47,7 +47,6 @@ export default class Histogram extends Component {
          .append('rect')
          .attr('width', 40)
          .attr('height', (datapoint) => datapoint.value * scale)
-         .attr('fill', 'orange')
          .attr('x', (datapoint, iteration) => iteration * 45)
          .attr('y', (datapoint) => canvasHeight - datapoint.value * scale)
          .on('mouseover', (event, datapoint, iteration) => {

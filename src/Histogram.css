@@ -11,6 +11,10 @@
     pointer-events: none;			
 }
 
+rect {
+    fill: orange;
+}
+
 rect:hover {
     fill: #FED8B1;
 }
