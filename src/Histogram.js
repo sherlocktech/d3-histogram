@@ -3,6 +3,11 @@ import './Histogram.css'
 import * as d3 from 'd3'
 
 export default class Histogram extends Component {
+   constructor(props) {
+      super(props);
+      this.canvas = React.createRef();
+   }
+
    componentDidMount() {
       const data = this.buildData()
       this.drawBarChart(data)
@@ -26,12 +31,12 @@ export default class Histogram extends Component {
       const canvasWidth = 600
       const scale = 20
 
-      const tooltip = d3.select(this.refs.canvas)
+      const tooltip = d3.select(this.canvas.current)
          .append('div')
          .attr('class', 'tooltip')
          .style('display', 'none')
 
-      const svgCanvas = d3.select(this.refs.canvas)
+      const svgCanvas = d3.select(this.canvas.current)
          .append('svg')
          .attr('width', canvasWidth)
          .attr('height', canvasHeight)
@@ -61,6 +66,6 @@ export default class Histogram extends Component {
    }
 
    render() {
-      return <div ref="canvas"></div>
+      return <div ref={this.canvas}></div>
    }
 }
